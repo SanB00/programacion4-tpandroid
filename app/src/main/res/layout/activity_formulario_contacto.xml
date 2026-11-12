@@ -41,72 +41,67 @@
             android:textStyle="bold" />
 
 
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="nombre"
-        />
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="nombre"
+            android:inputType="text" />
 
-    <TextView
-        android:id="@+id/tvApellido"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="APELLIDO"
-        android:textSize="16sp"
-        android:textStyle="bold"
-    />
-    <EditText
-        android:id="@+id/etApellido"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Apellido"
-        />
-    <TextView
-        android:id="@+id/tvTelefono"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TELEFONO"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        />
+        <TextView
+            android:id="@+id/tvApellido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="APELLIDO"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/etTelefono"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:hint="Telefono"
-        />
+        <EditText
+            android:id="@+id/etApellido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
 
-    <Spinner
-        android:id="@+id/spTelefono"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:entries="@array/tipo_contacto"
-        android:spinnerMode="dropdown"
-        />
-        
+            android:ems="10"
+            android:hint="Apellido"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-    />
-    <Spinner
-        android:id="@+id/spEmail"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:entries="@array/tipo_contacto"
-        android:spinnerMode="dropdown"
-        />
+        <TextView
+            android:id="@+id/tvTelefono"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="TELEFONO"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Telefono"
+            android:inputType="phone" />
+
+        <Spinner
+            android:id="@+id/spTelefono"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/tipo_contacto"
+            android:spinnerMode="dropdown" />
+
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
+
+        <Spinner
+            android:id="@+id/spEmail"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/tipo_contacto"
+            android:spinnerMode="dropdown" />
 
         <Button
             android:id="@+id/btnGuardar"
