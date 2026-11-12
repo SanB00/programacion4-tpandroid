@@ -2,9 +2,9 @@
     <string name="app_name">TP6_GRUPO_16</string>
     <string name="tvName_ES">Nombre</string>
     <string name="tvName_EN">Name</string>
-<string-array name="tipo_contacto">
-    <item>Casa</item>
-    <item>Trabajo</item>
-    <item>Móvil</item>
-</string-array>
+    <string-array name="tipo_contacto">
+        <item>Casa</item>
+        <item>Trabajo</item>
+        <item>Móvil</item>
+    </string-array>
 </resources>
