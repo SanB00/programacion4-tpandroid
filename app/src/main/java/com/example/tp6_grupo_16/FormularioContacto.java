@@ -15,11 +15,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class FormularioContacto extends AppCompatActivity {
-    private EditText txtNombre;
-    private EditText txtApellido;
-    private EditText txtTelefono;
+    private EditText etNombre;
+    private EditText etApellido;
+    private EditText etTelefono;
     private Spinner spTelefono;
-    private EditText txtTEmail;
+    private EditText etTEmail;
     private Spinner spEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +31,11 @@ public class FormularioContacto extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        txtNombre=findViewById(R.id.editTextNombre);
-        txtApellido=findViewById(R.id.editTextApellido);
-        txtTelefono=findViewById(R.id.editTextPhone);
+        etNombre=findViewById(R.id.etNombre);
+        etApellido=findViewById(R.id.etApellido);
+        etTelefono=findViewById(R.id.etTelefono);
         spTelefono=findViewById(R.id.spTelefono);
-        txtTEmail=findViewById(R.id.editTextEmail);
+        etTEmail=findViewById(R.id.etEmail);
         spEmail=findViewById(R.id.spEmail);
 
     }
@@ -59,24 +59,24 @@ public class FormularioContacto extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private Boolean VerificarDatos() {
-        String nombre = txtNombre.getText().toString().trim();
-        String apellido = txtApellido.getText().toString().trim();
+        String nombre = etNombre.getText().toString().trim();
+        String apellido = etApellido.getText().toString().trim();
         if (nombre.isEmpty() || !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
-            txtNombre.setError("Ingrese un nombre valido");
+            etNombre.setError("Ingrese un nombre valido");
             return false;
         }
         if (apellido.isEmpty() || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
-            txtApellido.setError("Ingrese un apellido valido");
+            etApellido.setError("Ingrese un apellido valido");
             return false;
         }
-        String telefono = txtTelefono.getText().toString().trim();
+        String telefono = etTelefono.getText().toString().trim();
         if (!telefono.matches("[0-9]+")) {
-            txtTelefono.setError("Ingrese un telefono valido");
+            etTelefono.setError("Ingrese un telefono valido");
             return false;
         }
-        String Email = txtTEmail.getText().toString().trim();
+        String Email = etTEmail.getText().toString().trim();
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
-            txtTEmail.setError("Ingrese un email valido");
+            etTEmail.setError("Ingrese un email valido");
             return false;
         }
         return true;
