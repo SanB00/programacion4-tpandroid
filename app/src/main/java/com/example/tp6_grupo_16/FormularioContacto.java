@@ -19,7 +19,7 @@ public class FormularioContacto extends AppCompatActivity {
     private EditText etApellido;
     private EditText etTelefono;
     private Spinner spTelefono;
-    private EditText etTEmail;
+    private EditText etEmail;
     private Spinner spEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class FormularioContacto extends AppCompatActivity {
         etApellido=findViewById(R.id.etApellido);
         etTelefono=findViewById(R.id.etTelefono);
         spTelefono=findViewById(R.id.spTelefono);
-        etTEmail=findViewById(R.id.etEmail);
+        etEmail=findViewById(R.id.etEmail);
         spEmail=findViewById(R.id.spEmail);
 
     }
@@ -74,9 +74,9 @@ public class FormularioContacto extends AppCompatActivity {
             etTelefono.setError("Ingrese un telefono valido");
             return false;
         }
-        String Email = etTEmail.getText().toString().trim();
+        String Email = etEmail.getText().toString().trim();
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
-            etTEmail.setError("Ingrese un email valido");
+            etEmail.setError("Ingrese un email valido");
             return false;
         }
         return true;
