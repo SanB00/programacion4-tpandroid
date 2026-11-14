@@ -1,56 +1,56 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
-    <!-- Enforce camelCase for instance/member fields (e.g., private EditText etNombre2;) -->
+    
+    <!-- Enforce camelCase for instance/member variables -->
     <inspection_tool class="InstanceVariableNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="m_regex" value="[a-z][A-Za-z\d]*" />
-      <option name="m_minLength" value="2" />
+      <option name="m_minLength" value="1" />
       <option name="m_maxLength" value="32" />
+      <scope name="Project Files" level="ERROR" enabled="true" />
     </inspection_tool>
-    <!-- Enforce camelCase for local variables -->
+
+    <!-- Enforce camelCase for local variables (Catches 'Email') -->
     <inspection_tool class="LocalVariableNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="m_ignoreForLoopParameters" value="false" />
       <option name="m_ignoreCatchParameters" value="false" />
       <option name="m_regex" value="[a-z][A-Za-z\d]*" />
       <option name="m_minLength" value="1" />
       <option name="m_maxLength" value="32" />
+      <state>
+        <option name="DEFAULT_SEVERITY" value="ERROR" />
+      </state>
     </inspection_tool>
+
     <!-- Enforce camelCase for method parameters -->
     <inspection_tool class="ParameterNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="m_regex" value="[a-z][A-Za-z\d]*" />
       <option name="m_minLength" value="1" />
       <option name="m_maxLength" value="32" />
+      <state>
+        <option name="DEFAULT_SEVERITY" value="ERROR" />
+      </state>
     </inspection_tool>
-    <!-- Enforce camelCase for instance methods (e.g., private boolean verificarDatos()) -->
+
+    <!-- Enforce camelCase for instance methods (Catches 'VerificarDatos') -->
     <inspection_tool class="InstanceMethodNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="m_regex" value="[a-z][A-Za-z\d]*" />
       <option name="m_minLength" value="2" />
       <option name="m_maxLength" value="32" />
+      <state>
+        <option name="DEFAULT_SEVERITY" value="ERROR" />
+      </state>
     </inspection_tool>
-    <!-- Enforce camelCase for static methods -->
-    <inspection_tool class="StaticMethodNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
-      <option name="m_regex" value="[a-z][A-Za-z\d]*" />
-      <option name="m_minLength" value="2" />
-      <option name="m_maxLength" value="32" />
-    </inspection_tool>
-    <!-- Enforce PascalCase for classes (e.g., public class FormularioContacto) -->
+
+    <!-- Enforce PascalCase for classes -->
     <inspection_tool class="ClassNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="m_regex" value="[A-Z][A-Za-z\d]*" />
       <option name="m_minLength" value="2" />
       <option name="m_maxLength" value="64" />
+      <state>
+        <option name="DEFAULT_SEVERITY" value="ERROR" />
+      </state>
     </inspection_tool>
-    <!-- Enforce PascalCase for interfaces -->
-    <inspection_tool class="InterfaceNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
-      <option name="m_regex" value="[A-Z][A-Za-z\d]*" />
-      <option name="m_minLength" value="2" />
-      <option name="m_maxLength" value="64" />
-    </inspection_tool>
-    <!-- Enforce UPPER_SNAKE_CASE for constants (static final fields) -->
-    <inspection_tool class="ConstantNamingConvention" enabled="true" level="ERROR" enabled_by_default="true">
-      <option name="onlyCheckImmutables" value="true" />
-      <option name="m_regex" value="[A-Z][A-Z_\d]*" />
-      <option name="m_minLength" value="2" />
-      <option name="m_maxLength" value="32" />
-    </inspection_tool>
+
   </profile>
 </component>

@@ -56,30 +56,29 @@ public class FormularioContacto extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+//        VerificarDatos();;
         return super.onOptionsItemSelected(item);
     }
-    private Boolean VerificarDatos() {
+    private void VerificarDatos() {
         String nombre = etNombre.getText().toString().trim();
         String apellido = etApellido.getText().toString().trim();
         if (nombre.isEmpty() || !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
             etNombre.setError("Ingrese un nombre valido");
-            return false;
+            return;
         }
         if (apellido.isEmpty() || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
             etApellido.setError("Ingrese un apellido valido");
-            return false;
+            return;
         }
         String telefono = etTelefono.getText().toString().trim();
         if (!telefono.matches("[0-9]+")) {
             etTelefono.setError("Ingrese un telefono valido");
-            return false;
+            return;
         }
-        String Email = etEmail.getText().toString().trim();
-        if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+        String email = etEmail.getText().toString().trim();
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError("Ingrese un email valido");
-            return false;
         }
-        return true;
 
     }
 }
