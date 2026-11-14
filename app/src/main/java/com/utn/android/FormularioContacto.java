@@ -1,4 +1,4 @@
-package com.example.tp6_grupo_16;
+package com.utn.android;
 
 import android.content.Intent;
 import android.os.Bundle;

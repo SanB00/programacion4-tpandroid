@@ -1,4 +1,4 @@
-package com.example.tp6_grupo_16.ui.theme
+package com.utn.android.ui.theme
 
 import android.app.Activity
 import android.os.Build
