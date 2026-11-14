@@ -12,6 +12,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MasDatosContacto extends AppCompatActivity {
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private String tipoTelefono;
+    private String email;
+    private String tipoEmail;
+    private String direccion;
+    private String fechaNacimiento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,15 @@ public class MasDatosContacto extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent intent = getIntent();
+        nombre = intent.getStringExtra("nombre");
+        apellido = intent.getStringExtra("apellido");
+        telefono = intent.getStringExtra("telefono");
+        tipoTelefono = intent.getStringExtra("tipoTelefono");
+        email = intent.getStringExtra("email");
+        tipoEmail = intent.getStringExtra("tipoEmail");
+        direccion = intent.getStringExtra("direccion");
+        fechaNacimiento = intent.getStringExtra("fechaNacimiento");
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);

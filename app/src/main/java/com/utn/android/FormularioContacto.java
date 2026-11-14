@@ -113,6 +113,17 @@ public class FormularioContacto extends AppCompatActivity {
         if(!VerificarDatos()){
             return;
         }
-
+        Intent intent = new Intent(this, MasDatosContacto.class);
+        intent.putExtra("nombre", etNombre.getText().toString().trim());
+        intent.putExtra("apellido", etApellido.getText().toString().trim());
+        intent.putExtra("telefono", etTelefono.getText().toString().trim());
+        intent.putExtra("tipoTelefono", spTelefono.getSelectedItem().toString());
+        intent.putExtra("email", etEmail.getText().toString().trim());
+        intent.putExtra("tipoEmail", spEmail.getSelectedItem().toString());
+        intent.putExtra("direccion", etDireccion.getText().toString().trim());
+        intent.putExtra("fechaNacimiento", etFechaNacimiento.getText().toString().trim());
+        startActivity(intent);
     }
+
+
 }
