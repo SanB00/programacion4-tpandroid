@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.Theme.TP6_GRUPO_16"
+    <style name="Base.Theme.tpAndroidUTN"
         parent="Theme.MaterialComponents.DayNight.DarkActionBar">
     <item name="colorPrimary">@color/verde_menu</item>
     <item name="colorPrimaryDark">@color/verde_oscuro</item>
     <item name="colorOnPrimary">#FFFFFF</item>
     </style>
-    <style name="Theme.TP6_GRUPO_16"
-        parent="Base.Theme.TP6_GRUPO_16" />
+    <style name="Theme.tpAndroidUTN"
+        parent="Base.Theme.tpAndroidUTN" />
 </resources>

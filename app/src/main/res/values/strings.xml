@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TP6_GRUPO_16</string>
+    <string name="app_name">tpAndroidUTN</string>
     <string name="tvName_ES">Nombre</string>
     <string name="tvName_EN">Name</string>
     <string-array name="tipo_contacto">
