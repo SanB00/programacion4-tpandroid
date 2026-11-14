@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -21,6 +22,9 @@ public class FormularioContacto extends AppCompatActivity {
     private Spinner spTelefono;
     private EditText etEmail;
     private Spinner spEmail;
+    private EditText etDireccion;
+    private EditText etFechaNacimiento;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,8 @@ public class FormularioContacto extends AppCompatActivity {
         spTelefono=findViewById(R.id.spTelefono);
         etEmail=findViewById(R.id.etEmail);
         spEmail=findViewById(R.id.spEmail);
+        etDireccion = findViewById(R.id.etDireccion);
+        etFechaNacimiento = findViewById(R.id.etFechaNacimiento);
 
     }
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,28 +62,56 @@ public class FormularioContacto extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-//        VerificarDatos();;
         return super.onOptionsItemSelected(item);
     }
-    private void VerificarDatos() {
+    private Boolean VerificarDatos() {
+        boolean valido = true;
+
         String nombre = etNombre.getText().toString().trim();
-        String apellido = etApellido.getText().toString().trim();
         if (nombre.isEmpty() || !nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
             etNombre.setError("Ingrese un nombre valido");
-            return;
+            valido = false;
         }
+
+        String apellido = etApellido.getText().toString().trim();
         if (apellido.isEmpty() || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
             etApellido.setError("Ingrese un apellido valido");
-            return;
+            valido = false;
         }
+
         String telefono = etTelefono.getText().toString().trim();
-        if (!telefono.matches("[0-9]+")) {
+        if (!telefono.matches("^[0-9]+(-[0-9]+)*$")) {
             etTelefono.setError("Ingrese un telefono valido");
-            return;
+            valido = false;
         }
-        String email = etEmail.getText().toString().trim();
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+
+        String Email = etEmail.getText().toString().trim();
+        if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
             etEmail.setError("Ingrese un email valido");
+            valido = false;
+        }
+
+        String Direccion = etDireccion.getText().toString().trim();
+        if (Direccion.isEmpty()) {
+            etDireccion.setError("Ingrese una dirección valida");
+            valido = false;
+        }
+
+        String fechaNac = etFechaNacimiento.getText().toString().trim();
+        if (fechaNac.isEmpty()) {
+            etFechaNacimiento.setError("Ingrese una fecha de nacimiento");
+            valido = false;
+        } else if (!fechaNac.matches("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$")) {
+            etFechaNacimiento.setError("Ingrese una fecha válida (DD/MM/AAAA)");
+            valido = false;
+        }
+
+        return valido;
+    }
+
+    public void eventoContinuar(View view) {
+        if(!VerificarDatos()){
+            return;
         }
 
     }
