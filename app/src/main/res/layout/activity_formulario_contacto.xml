@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="NOMBRE"
+            android:text="(*) NOMBRE"
             android:textSize="10sp"
             android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
             android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="nombre"
+            android:hint="Nombre"
             android:inputType="text"
             android:textSize="12sp" />
 
@@ -54,7 +54,7 @@
             android:id="@+id/tvApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="APELLIDO"
+            android:text="(*) APELLIDO"
             android:textSize="10sp"
             android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
             android:id="@+id/etApellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Apellido"
+            android:hint="(*) Apellido"
             android:inputType="text"
             android:textSize="12sp" />
 
@@ -95,7 +95,6 @@
                     android:id="@+id/spTelefono"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/tipo_contacto"
                     android:spinnerMode="dropdown" />
 
             </TableRow>
@@ -122,8 +121,8 @@
                     android:id="@+id/spEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/tipo_contacto"
                     android:spinnerMode="dropdown" />
+                <!--android:entries="@array/tipo_contacto"-->
 
             </TableRow>
         </TableLayout>
