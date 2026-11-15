@@ -1,10 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MasDatosContacto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="FORMULARIO DE CONTACTO"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="A continuación, completá los datos adicionales."
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvNivelEstudios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="NIVEL DE ESTUDIOS ALCANZADOS"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/rgEstudios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbPrimariaIncompleta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Primario incompleto"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbPrimariaCompleta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Primario completo"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbSecundariaIncompleta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Secundario incompleto"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbSecundariaCompleta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Secundario completo"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/rbOtros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Otros"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</ScrollView>

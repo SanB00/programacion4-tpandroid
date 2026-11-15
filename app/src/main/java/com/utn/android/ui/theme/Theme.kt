@@ -1,4 +1,4 @@
-package com.example.tp6_grupo_16.ui.theme
+package com.utn.android.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun TP6_GRUPO_16Theme(
+fun tpAndroidUTNTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

@@ -1,4 +1,4 @@
-package com.example.tp6_grupo_16;
+package com.utn.android;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.utn.android.entidades.Persona;
+
 public class MasDatosContacto extends AppCompatActivity {
+    private Persona objPersona;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,18 @@ public class MasDatosContacto extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent intent = getIntent();
+
+        String nombre = intent.getStringExtra("nombre");
+        String apellido = intent.getStringExtra("apellido");
+        String telefono = intent.getStringExtra("telefono");
+        String tipoTelefono = intent.getStringExtra("tipoTelefono");
+        String email = intent.getStringExtra("email");
+        String tipoEmail = intent.getStringExtra("tipoEmail");
+        String direccion = intent.getStringExtra("direccion");
+        String fechaNacimiento = intent.getStringExtra("fechaNacimiento");
+
+        objPersona = new Persona(nombre, apellido, telefono, tipoTelefono, email, tipoEmail, direccion, fechaNacimiento);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);

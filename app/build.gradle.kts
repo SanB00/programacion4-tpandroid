@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tp6_grupo_16"
+    namespace = "com.utn.android"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.example.tp6_grupo_16"
+        applicationId = "com.utn.android"
         minSdk = 28
         targetSdk = 37
         versionCode = 1

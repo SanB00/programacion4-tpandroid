@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TP6_GRUPO_16"
+rootProject.name = "tpAndroidUTN"
 include(":app")
  
