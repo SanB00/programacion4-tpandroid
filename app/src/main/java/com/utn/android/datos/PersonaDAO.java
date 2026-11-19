@@ -17,7 +17,7 @@ public class PersonaDAO implements IDatos<Persona>{
     }
 
     @Override
-    public void insert(Persona obj) {
+    public boolean insert(Persona obj) {
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put("nombre", obj.getNombre());
@@ -31,9 +31,9 @@ public class PersonaDAO implements IDatos<Persona>{
         registro.put("nivelEstudios", obj.getNivelEstudios());
         registro.put("intereses", obj.getIntereses());
         registro.put("recibeInfo", obj.isRecibeInfo());
-
-        BaseDeDatos.insert("personas", null, registro);
+        long resultado = BaseDeDatos.insert("personas", null, registro);
         BaseDeDatos.close();
+        return resultado != -1;
     }
     @Override
     public ArrayList getAll() {

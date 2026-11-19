@@ -1,13 +1,11 @@
 
 package com.utn.android.datos;
 
-import com.utn.android.entidades.Persona;
-
 import java.util.ArrayList;
 
 public interface IDatos<T> {
 
-    void insert(T obj);
+    boolean insert(T obj);
 
     ArrayList<T> getAll();
 
