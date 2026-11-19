@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -15,7 +16,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-//import com.utn.android.R;
+import com.utn.android.datos.TipoContactoDAO;
+import com.utn.android.entidades.TipoContacto;
+
+import java.util.ArrayList;
 
 public class FormularioContacto extends AppCompatActivity {
     private EditText etNombre;
@@ -37,35 +41,53 @@ public class FormularioContacto extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        etNombre=findViewById(R.id.etNombre);
-        etApellido=findViewById(R.id.etApellido);
-        etTelefono=findViewById(R.id.etTelefono);
-        spTelefono=findViewById(R.id.spTelefono);
-        etEmail=findViewById(R.id.etEmail);
-        spEmail=findViewById(R.id.spEmail);
+
+        ArrayList<TipoContacto> listaTipoContacto = new TipoContactoDAO().getAll();
+        spEmail = findViewById(R.id.spEmail);
+        cargarSpinnerTipoContacto(spEmail, listaTipoContacto);
+        spTelefono = findViewById(R.id.spTelefono);
+        cargarSpinnerTipoContacto(spTelefono, listaTipoContacto);
+
+        etNombre = findViewById(R.id.etNombre);
+        etApellido = findViewById(R.id.etApellido);
+        etTelefono = findViewById(R.id.etTelefono);
+        spTelefono = findViewById(R.id.spTelefono);
+        etEmail = findViewById(R.id.etEmail);
+        spEmail = findViewById(R.id.spEmail);
         etDireccion = findViewById(R.id.etDireccion);
         etFechaNacimiento = findViewById(R.id.etFechaNacimiento);
 
     }
+
+    private void cargarSpinnerTipoContacto(Spinner spinner, ArrayList<TipoContacto> listaTipoContacto) {
+        ArrayAdapter<TipoContacto> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, listaTipoContacto
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id=item.getItemId();
 
-        if(id==R.id.menu_agregar){
-            Intent intent = new Intent(this,FormularioContacto.class);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_agregar) {
+            Intent intent = new Intent(this, FormularioContacto.class);
             startActivity(intent);
             return true;
-        }
-        else if(id==R.id.menu_listado){
-            Intent intent=new Intent(this,ListarContactos.class);
+        } else if (id == R.id.menu_listado) {
+            Intent intent = new Intent(this, ListarContactos.class);
             startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private Boolean VerificarDatos() {
         boolean valido = true;
 
@@ -112,7 +134,7 @@ public class FormularioContacto extends AppCompatActivity {
     }
 
     public void eventoContinuar(View view) {
-        if(!VerificarDatos()){
+        if (!VerificarDatos()) {
             return;
         }
         Intent intent = new Intent(this, MasDatosContacto.class);

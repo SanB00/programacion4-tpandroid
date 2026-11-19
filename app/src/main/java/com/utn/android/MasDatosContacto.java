@@ -11,17 +11,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-//import com.utn.android.R;
+import com.utn.android.entidades.Persona;
 
 public class MasDatosContacto extends AppCompatActivity {
-    private String nombre;
-    private String apellido;
-    private String telefono;
-    private String tipoTelefono;
-    private String email;
-    private String tipoEmail;
-    private String direccion;
-    private String fechaNacimiento;
+    private Persona objPersona;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +27,17 @@ public class MasDatosContacto extends AppCompatActivity {
             return insets;
         });
         Intent intent = getIntent();
-        nombre = intent.getStringExtra("nombre");
-        apellido = intent.getStringExtra("apellido");
-        telefono = intent.getStringExtra("telefono");
-        tipoTelefono = intent.getStringExtra("tipoTelefono");
-        email = intent.getStringExtra("email");
-        tipoEmail = intent.getStringExtra("tipoEmail");
-        direccion = intent.getStringExtra("direccion");
-        fechaNacimiento = intent.getStringExtra("fechaNacimiento");
+
+        String nombre = intent.getStringExtra("nombre");
+        String apellido = intent.getStringExtra("apellido");
+        String telefono = intent.getStringExtra("telefono");
+        String tipoTelefono = intent.getStringExtra("tipoTelefono");
+        String email = intent.getStringExtra("email");
+        String tipoEmail = intent.getStringExtra("tipoEmail");
+        String direccion = intent.getStringExtra("direccion");
+        String fechaNacimiento = intent.getStringExtra("fechaNacimiento");
+
+        objPersona = new Persona(nombre, apellido, telefono, tipoTelefono, email, tipoEmail, direccion, fechaNacimiento);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
