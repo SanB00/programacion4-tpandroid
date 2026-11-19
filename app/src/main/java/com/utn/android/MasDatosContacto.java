@@ -1,18 +1,9 @@
-package com.utn.android;
+package com.example.tp6_grupo_16;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,18 +11,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.utn.android.datos.PersonaDAO;
-import com.utn.android.entidades.Persona;
-
-import java.util.ArrayList;
+import com.utn.android.R;
 
 public class MasDatosContacto extends AppCompatActivity {
-    private Persona objPersona;
-    private RadioGroup rgEstudios;
-    private CheckBox chkDeportes, chkMusica, chkTecnologia, chkArte;
-    private Switch swNotificaciones;
-    private TextView error;
-
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private String tipoTelefono;
+    private String email;
+    private String tipoEmail;
+    private String direccion;
+    private String fechaNacimiento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,44 +34,14 @@ public class MasDatosContacto extends AppCompatActivity {
             return insets;
         });
         Intent intent = getIntent();
-
-        String nombre = intent.getStringExtra("nombre");
-        String apellido = intent.getStringExtra("apellido");
-        String telefono = intent.getStringExtra("telefono");
-        String tipoTelefono = intent.getStringExtra("tipoTelefono");
-        String email = intent.getStringExtra("email");
-        String tipoEmail = intent.getStringExtra("tipoEmail");
-        String direccion = intent.getStringExtra("direccion");
-        String fechaNacimiento = intent.getStringExtra("fechaNacimiento");
-
-        objPersona = new Persona(nombre, apellido, telefono, tipoTelefono, email, tipoEmail, direccion, fechaNacimiento);
-        rgEstudios = findViewById(R.id.rgEstudios);
-        chkDeportes = findViewById(R.id.chkDeporte);
-        chkMusica = findViewById(R.id.chkMusica);
-        chkArte = findViewById(R.id.chkArte);
-        chkTecnologia = findViewById(R.id.chkTecnologia);
-        swNotificaciones = findViewById(R.id.swInfo);
-        error = findViewById(R.id.tvError);
-        Button btnGuardar = findViewById(R.id.btnGuardar);
-
-        btnGuardar.setOnClickListener(v -> {
-            if (verificar()) {
-
-                PersonaDAO dao = new PersonaDAO(this);
-                boolean guardado = dao.insert(objPersona);
-
-                if (guardado) {
-                    error.setText("Contacto guardado correctamente");
-                    error.setTextColor(Color.GREEN);
-                    error.setVisibility(View.VISIBLE);
-                    btnGuardar.setEnabled(false);
-                } else {
-                    error.setText("Error al guardar el contacto");
-                    error.setTextColor(Color.RED);
-                    error.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+        nombre = intent.getStringExtra("nombre");
+        apellido = intent.getStringExtra("apellido");
+        telefono = intent.getStringExtra("telefono");
+        tipoTelefono = intent.getStringExtra("tipoTelefono");
+        email = intent.getStringExtra("email");
+        tipoEmail = intent.getStringExtra("tipoEmail");
+        direccion = intent.getStringExtra("direccion");
+        fechaNacimiento = intent.getStringExtra("fechaNacimiento");
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -101,40 +61,5 @@ public class MasDatosContacto extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-    public boolean verificar() {
-        error.setVisibility(View.GONE);
-        int idSeleccionado = rgEstudios.getCheckedRadioButtonId();
-        if (idSeleccionado == -1) {
-            error.setText("Seleccione al menos un estudio");
-            error.setVisibility(View.VISIBLE);
-            return false;
-        }
-        RadioButton rbSeleccionado = findViewById(idSeleccionado);
-        objPersona.setNivelEstudios(rbSeleccionado.getText().toString());
-
-        ArrayList<String> listaIntereses = new ArrayList<>();
-        if (chkDeportes.isChecked()) {
-            listaIntereses.add("Deporte");
-        }
-        if (chkMusica.isChecked()) {
-            listaIntereses.add("Musica");
-        }
-        if (chkTecnologia.isChecked()) {
-            listaIntereses.add("Tecnologia");
-        }
-        if (chkArte.isChecked()) {
-            listaIntereses.add("Arte");
-        }
-
-        if (listaIntereses.isEmpty()) {
-            error.setText("Seleccione al menos un interes");
-            error.setVisibility(View.VISIBLE);
-            return false;
-        }
-        String intereses = TextUtils.join(", ", listaIntereses);
-        objPersona.setIntereses(intereses);
-        objPersona.setRecibeInfo(swNotificaciones.isChecked());
-        return true;
     }
 }
