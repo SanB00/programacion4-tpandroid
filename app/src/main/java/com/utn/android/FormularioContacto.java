@@ -16,7 +16,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.utn.android.R;
 import com.utn.android.datos.TipoContactoDAO;
 import com.utn.android.entidades.TipoContacto;
 

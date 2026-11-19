@@ -1,6 +1,8 @@
 
 package com.utn.android.datos;
 
+import com.utn.android.entidades.Persona;
+
 import java.util.ArrayList;
 
 public interface IDatos<T> {
