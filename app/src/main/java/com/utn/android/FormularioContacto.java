@@ -1,16 +1,13 @@
-package com.utn.android;
+package com.example.tp6_grupo_16;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,15 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.utn.android.datos.TipoContactoDAO;
-import com.utn.android.entidades.TipoContacto;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import com.utn.android.R;
 
 public class FormularioContacto extends AppCompatActivity {
     private EditText etNombre;
@@ -48,76 +37,35 @@ public class FormularioContacto extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        ArrayList<TipoContacto> listaTipoContacto = new TipoContactoDAO().getAll();
-        spEmail = findViewById(R.id.spEmail);
-        cargarSpinnerTipoContacto(spEmail, listaTipoContacto);
-        spTelefono = findViewById(R.id.spTelefono);
-        cargarSpinnerTipoContacto(spTelefono, listaTipoContacto);
-
-        etNombre = findViewById(R.id.etNombre);
-        etApellido = findViewById(R.id.etApellido);
-        etTelefono = findViewById(R.id.etTelefono);
-        spTelefono = findViewById(R.id.spTelefono);
-        etEmail = findViewById(R.id.etEmail);
-        spEmail = findViewById(R.id.spEmail);
+        etNombre=findViewById(R.id.etNombre);
+        etApellido=findViewById(R.id.etApellido);
+        etTelefono=findViewById(R.id.etTelefono);
+        spTelefono=findViewById(R.id.spTelefono);
+        etEmail=findViewById(R.id.etEmail);
+        spEmail=findViewById(R.id.spEmail);
         etDireccion = findViewById(R.id.etDireccion);
         etFechaNacimiento = findViewById(R.id.etFechaNacimiento);
-        etFechaNacimiento.setFocusable(false);
-        etFechaNacimiento.setOnClickListener(v -> mostrarSelectorFecha());
 
     }
-    private void mostrarSelectorFecha() {
-        Calendar c = Calendar.getInstance();
-        new DatePickerDialog(this,
-                (view, anio, mes, dia) -> {
-                    etFechaNacimiento.setText(String.format(Locale.getDefault(), "%02d/%02d/%04d", dia, mes + 1, anio));
-                    etFechaNacimiento.setError(null);
-                },
-                c.get(Calendar.YEAR) - 18, c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)
-        ).show();
-    }
-
-    private boolean fechaValida(String fecha) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        sdf.setLenient(false);
-        try {
-            Date d = sdf.parse(fecha);
-            return d != null && !d.after(new Date());
-        } catch (ParseException e) {
-            return false;
-        }
-    }
-
-    private void cargarSpinnerTipoContacto(Spinner spinner, ArrayList<TipoContacto> listaTipoContacto) {
-        ArrayAdapter<TipoContacto> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, listaTipoContacto
-        );
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-    }
-
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id=item.getItemId();
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.menu_agregar) {
-            Intent intent = new Intent(this, FormularioContacto.class);
+        if(id==R.id.menu_agregar){
+            Intent intent = new Intent(this,FormularioContacto.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.menu_listado) {
-            Intent intent = new Intent(this, ListarContactos.class);
+        }
+        else if(id==R.id.menu_listado){
+            Intent intent=new Intent(this,ListarContactos.class);
             startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
     private Boolean VerificarDatos() {
         boolean valido = true;
 
@@ -154,11 +102,9 @@ public class FormularioContacto extends AppCompatActivity {
         String fechaNac = etFechaNacimiento.getText().toString().trim();
         if (fechaNac.isEmpty()) {
             etFechaNacimiento.setError("Ingrese una fecha de nacimiento");
-            Toast.makeText(this, "Seleccione la fecha de nacimiento", Toast.LENGTH_SHORT).show();
             valido = false;
-        } else if (!fechaValida(fechaNac)) {
+        } else if (!fechaNac.matches("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$")) {
             etFechaNacimiento.setError("Ingrese una fecha válida (DD/MM/AAAA)");
-            Toast.makeText(this, "La fecha de nacimiento no es válida", Toast.LENGTH_SHORT).show();
             valido = false;
         }
 
@@ -166,7 +112,7 @@ public class FormularioContacto extends AppCompatActivity {
     }
 
     public void eventoContinuar(View view) {
-        if (!VerificarDatos()) {
+        if(!VerificarDatos()){
             return;
         }
         Intent intent = new Intent(this, MasDatosContacto.class);
