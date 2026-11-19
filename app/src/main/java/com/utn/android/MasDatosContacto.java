@@ -3,6 +3,7 @@ package com.utn.android;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.utn.android.datos.PersonaDAO;
 import com.utn.android.entidades.Persona;
+
+import java.util.ArrayList;
 
 public class MasDatosContacto extends AppCompatActivity {
     private Persona objPersona;
@@ -109,25 +112,27 @@ public class MasDatosContacto extends AppCompatActivity {
         }
         RadioButton rbSeleccionado = findViewById(idSeleccionado);
         objPersona.setNivelEstudios(rbSeleccionado.getText().toString());
-        String intereses = "";
+
+        ArrayList<String> listaIntereses = new ArrayList<>();
         if (chkDeportes.isChecked()) {
-            intereses += "Deporte, ";
+            listaIntereses.add("Deporte");
         }
         if (chkMusica.isChecked()) {
-            intereses += "Musica, ";
+            listaIntereses.add("Musica");
         }
         if (chkTecnologia.isChecked()) {
-            intereses += "Tecnologia, ";
+            listaIntereses.add("Tecnologia");
         }
         if (chkArte.isChecked()) {
-            intereses += "Arte, ";
+            listaIntereses.add("Arte");
         }
 
-        if (intereses.isEmpty()) {
+        if (listaIntereses.isEmpty()) {
             error.setText("Seleccione al menos un interes");
             error.setVisibility(View.VISIBLE);
             return false;
         }
+        String intereses = TextUtils.join(", ", listaIntereses);
         objPersona.setIntereses(intereses);
         objPersona.setRecibeInfo(swNotificaciones.isChecked());
         return true;
