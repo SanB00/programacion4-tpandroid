@@ -2,6 +2,7 @@ package com.utn.android.datos;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.utn.android.entidades.Persona;
@@ -37,7 +38,37 @@ public class PersonaDAO implements IDatos<Persona>{
     }
     @Override
     public ArrayList getAll() {
-        return null;
+        ArrayList<Persona> listaContactos = new ArrayList<Persona>();
+        Cursor mcursor = null;
+
+        String[] columnas = {"id", "nombre", "apellido", "telefono", "tipoTelefono",
+                             "email", "tipoEmail", "direccion", "fechaNacimiento",
+                             "nivelEstudios", "intereses", "recibeInfo"};
+
+        SQLiteDatabase BaseDeDatos = admin.getReadableDatabase();
+        mcursor = BaseDeDatos.query("personas", columnas, null, null, null, null, null);
+
+        if(mcursor.moveToFirst()){
+            do {
+                Persona persona = new Persona();
+                persona.setId(mcursor.getInt(0));
+                persona.setNombre(mcursor.getString(1));
+                persona.setApellido(mcursor.getString(2));
+                persona.setTelefono(mcursor.getString(3));
+                persona.setTipoTelefono(mcursor.getString(4));
+                persona.setEmail(mcursor.getString(5));
+                persona.setTipoEmail(mcursor.getString(6));
+                persona.setDireccion(mcursor.getString(7));
+                persona.setFechaNacimiento(mcursor.getString(8));
+                persona.setNivelEstudios(mcursor.getString(9));
+                persona.setIntereses(mcursor.getString(10));
+                persona.setRecibeInfo(mcursor.getInt(11) == 1);
+                listaContactos.add(persona);
+            }while(mcursor.moveToNext());
+            mcursor.close();
+        }
+        BaseDeDatos.close();
+        return listaContactos;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.utn.android.entidades;
 
 public class Persona {
+    private int id;
     private String nombre;
     private String apellido;
     private String telefono;
@@ -13,6 +14,7 @@ public class Persona {
     private String intereses;
     private boolean recibeInfo;
 
+    public Persona() {}
     public Persona(String nombre, String apellido, String telefono, String tipoTelefono, String email, String tipoEmail, String direccion, String fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -23,6 +25,10 @@ public class Persona {
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    public int getId() {return id;}
+
+    public void setId(int id) {this.id = id;}
 
     public String getNombre() {
         return nombre;
