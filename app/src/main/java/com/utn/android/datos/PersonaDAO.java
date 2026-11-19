@@ -37,7 +37,7 @@ public class PersonaDAO implements IDatos<Persona>{
         return resultado != -1;
     }
     @Override
-    public ArrayList getAll() {
+    public ArrayList<Persona> getAll() {
         ArrayList<Persona> listaContactos = new ArrayList<Persona>();
         Cursor mcursor = null;
 
