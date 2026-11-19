@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public interface IDatos<T> {
 
-    void insert(T obj);
+    boolean insert(T obj);
 
     ArrayList<T> getAll();
 

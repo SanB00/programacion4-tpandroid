@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 public class TipoContactoDAO implements  IDatos<TipoContacto> {
     @Override
-    public void insert(TipoContacto obj) {
+    public boolean insert(TipoContacto obj) {
 
+        return false;
     }
 
     @Override

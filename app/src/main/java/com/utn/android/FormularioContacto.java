@@ -1,5 +1,7 @@
 package com.utn.android;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +22,12 @@ import androidx.core.view.WindowInsetsCompat;
 import com.utn.android.datos.TipoContactoDAO;
 import com.utn.android.entidades.TipoContacto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class FormularioContacto extends AppCompatActivity {
     private EditText etNombre;
@@ -56,7 +64,49 @@ public class FormularioContacto extends AppCompatActivity {
         spEmail = findViewById(R.id.spEmail);
         etDireccion = findViewById(R.id.etDireccion);
         etFechaNacimiento = findViewById(R.id.etFechaNacimiento);
+        etFechaNacimiento.setFocusable(false);
+        etFechaNacimiento.setOnClickListener(v -> mostrarSelectorFecha());
 
+        cargarDatosPrueba();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void cargarDatosPrueba() {
+
+        etNombre.setText("Sofía que tu no eres María");
+        etApellido.setText("Rauw");
+        etTelefono.setText("1123456789");
+
+        etEmail.setText("RauwAlejandro@gmail.com");
+
+        etDireccion.setText("Av. Argentina 123");
+        etFechaNacimiento.setText("15/05/2000");
+
+        // Seleccionar opciones de los Spinner
+        spTelefono.setSelection(0);
+        spEmail.setSelection(1);
+    }
+
+    private void mostrarSelectorFecha() {
+        Calendar c = Calendar.getInstance();
+        new DatePickerDialog(this,
+                (view, anio, mes, dia) -> {
+                    etFechaNacimiento.setText(String.format(Locale.getDefault(), "%02d/%02d/%04d", dia, mes + 1, anio));
+                    etFechaNacimiento.setError(null);
+                },
+                c.get(Calendar.YEAR) - 18, c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)
+        ).show();
+    }
+
+    private boolean esUnaFechaValida(String fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        sdf.setLenient(false);
+        try {
+            Date d = sdf.parse(fecha);
+            return d != null && !d.after(new Date());
+        } catch (ParseException e) {
+            return false;
+        }
     }
 
     private void cargarSpinnerTipoContacto(Spinner spinner, ArrayList<TipoContacto> listaTipoContacto) {
@@ -88,7 +138,7 @@ public class FormularioContacto extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private Boolean VerificarDatos() {
+    private Boolean seVerificaronLosDatos() {
         boolean valido = true;
 
         String nombre = etNombre.getText().toString().trim();
@@ -109,14 +159,14 @@ public class FormularioContacto extends AppCompatActivity {
             valido = false;
         }
 
-        String Email = etEmail.getText().toString().trim();
-        if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+        String email = etEmail.getText().toString().trim();
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError("Ingrese un email valido");
             valido = false;
         }
 
-        String Direccion = etDireccion.getText().toString().trim();
-        if (Direccion.isEmpty()) {
+        String direccion = etDireccion.getText().toString().trim();
+        if (direccion.isEmpty()) {
             etDireccion.setError("Ingrese una dirección valida");
             valido = false;
         }
@@ -124,9 +174,11 @@ public class FormularioContacto extends AppCompatActivity {
         String fechaNac = etFechaNacimiento.getText().toString().trim();
         if (fechaNac.isEmpty()) {
             etFechaNacimiento.setError("Ingrese una fecha de nacimiento");
+            Toast.makeText(this, "Seleccione la fecha de nacimiento", Toast.LENGTH_SHORT).show();
             valido = false;
-        } else if (!fechaNac.matches("^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$")) {
+        } else if (!esUnaFechaValida(fechaNac)) {
             etFechaNacimiento.setError("Ingrese una fecha válida (DD/MM/AAAA)");
+            Toast.makeText(this, "La fecha de nacimiento no es válida", Toast.LENGTH_SHORT).show();
             valido = false;
         }
 
@@ -134,7 +186,7 @@ public class FormularioContacto extends AppCompatActivity {
     }
 
     public void eventoContinuar(View view) {
-        if (!VerificarDatos()) {
+        if (!seVerificaronLosDatos()) {
             return;
         }
         Intent intent = new Intent(this, MasDatosContacto.class);
