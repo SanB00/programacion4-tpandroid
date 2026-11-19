@@ -117,4 +117,22 @@ public class Persona {
     public void setRecibeInfo(boolean recibeInfo) {
         this.recibeInfo = recibeInfo;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", tipoTelefono='" + tipoTelefono + '\'' +
+                ", email='" + email + '\'' +
+                ", tipoEmail='" + tipoEmail + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", nivelEstudios='" + nivelEstudios + '\'' +
+                ", intereses='" + intereses + '\'' +
+                ", recibeInfo=" + recibeInfo +
+                '}';
+    }
 }

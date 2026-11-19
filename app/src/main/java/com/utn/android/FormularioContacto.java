@@ -1,5 +1,6 @@
 package com.utn.android;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -66,7 +67,26 @@ public class FormularioContacto extends AppCompatActivity {
         etFechaNacimiento.setFocusable(false);
         etFechaNacimiento.setOnClickListener(v -> mostrarSelectorFecha());
 
+        cargarDatosPrueba();
     }
+
+    @SuppressLint("SetTextI18n")
+    private void cargarDatosPrueba() {
+
+        etNombre.setText("Sofía que tu no eres María");
+        etApellido.setText("Rauw");
+        etTelefono.setText("1123456789");
+
+        etEmail.setText("RauwAlejandro@gmail.com");
+
+        etDireccion.setText("Av. Argentina 123");
+        etFechaNacimiento.setText("15/05/2000");
+
+        // Seleccionar opciones de los Spinner
+        spTelefono.setSelection(0);
+        spEmail.setSelection(1);
+    }
+
     private void mostrarSelectorFecha() {
         Calendar c = Calendar.getInstance();
         new DatePickerDialog(this,
@@ -78,7 +98,7 @@ public class FormularioContacto extends AppCompatActivity {
         ).show();
     }
 
-    private boolean fechaValida(String fecha) {
+    private boolean esUnaFechaValida(String fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         sdf.setLenient(false);
         try {
@@ -118,7 +138,7 @@ public class FormularioContacto extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private Boolean VerificarDatos() {
+    private Boolean seVerificaronLosDatos() {
         boolean valido = true;
 
         String nombre = etNombre.getText().toString().trim();
@@ -139,14 +159,14 @@ public class FormularioContacto extends AppCompatActivity {
             valido = false;
         }
 
-        String Email = etEmail.getText().toString().trim();
-        if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+        String email = etEmail.getText().toString().trim();
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etEmail.setError("Ingrese un email valido");
             valido = false;
         }
 
-        String Direccion = etDireccion.getText().toString().trim();
-        if (Direccion.isEmpty()) {
+        String direccion = etDireccion.getText().toString().trim();
+        if (direccion.isEmpty()) {
             etDireccion.setError("Ingrese una dirección valida");
             valido = false;
         }
@@ -156,7 +176,7 @@ public class FormularioContacto extends AppCompatActivity {
             etFechaNacimiento.setError("Ingrese una fecha de nacimiento");
             Toast.makeText(this, "Seleccione la fecha de nacimiento", Toast.LENGTH_SHORT).show();
             valido = false;
-        } else if (!fechaValida(fechaNac)) {
+        } else if (!esUnaFechaValida(fechaNac)) {
             etFechaNacimiento.setError("Ingrese una fecha válida (DD/MM/AAAA)");
             Toast.makeText(this, "La fecha de nacimiento no es válida", Toast.LENGTH_SHORT).show();
             valido = false;
@@ -166,7 +186,7 @@ public class FormularioContacto extends AppCompatActivity {
     }
 
     public void eventoContinuar(View view) {
-        if (!VerificarDatos()) {
+        if (!seVerificaronLosDatos()) {
             return;
         }
         Intent intent = new Intent(this, MasDatosContacto.class);

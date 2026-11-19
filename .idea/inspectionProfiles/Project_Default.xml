@@ -5,7 +5,7 @@
       <option name="ignoreBooleanMethods" value="false" />
       <option name="ignoreInAnnotationInterface" value="true" />
       <option name="onlyWarnOnBaseMethods" value="true" />
-      <option name="questionString" value="are,can,check,contains,could,endsWith,equals,has,is,matches,must,shall,should,startsWith,was,were,will,would,es,esta,son,estan,hay,tiene" />
+      <option name="questionString" value="are,can,check,contains,could,endsWith,equals,has,is,matches,must,shall,should,startsWith,was,were,will,would,es,esta,son,estan,hay,tiene,se" />
     </inspection_tool>
     <inspection_tool class="ClassNamingConvention" enabled="true" level="ERROR" enabled_by_default="true" editorAttributes="WRONG_REFERENCES_ATTRIBUTES">
       <option name="m_regex" value="[A-Z][A-Za-z\d]*" />
@@ -22,7 +22,7 @@
         <extension name="ConstantNamingConvention" enabled="true" />
         <extension name="EnumeratedConstantNamingConvention" enabled="true" />
         <extension name="InstanceVariableNamingConvention" enabled="true">
-          <option name="m_regex" value="_[a-z][A-Za-z\d]*" />
+          <option name="m_regex" value="[a-z][A-Za-z\d]*" />
           <option name="m_minLength" value="5" />
           <option name="m_maxLength" value="32" />
         </extension>

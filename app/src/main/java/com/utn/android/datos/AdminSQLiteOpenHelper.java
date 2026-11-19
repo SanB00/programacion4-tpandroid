@@ -12,8 +12,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase BaseDeDatos) {
-        BaseDeDatos.execSQL("CREATE TABLE IF NOT EXISTS personas (" +
+    public void onCreate(SQLiteDatabase baseDeDatos) {
+        baseDeDatos.execSQL("CREATE TABLE IF NOT EXISTS personas (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nombre TEXT, " +
                 "apellido TEXT, " +
