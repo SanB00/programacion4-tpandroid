@@ -1,4 +1,4 @@
-package com.example.tp6_grupo_16;
+package com.utn.android;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.utn.android.R;
+//import com.utn.android.R;
 
 public class FormularioContacto extends AppCompatActivity {
     private EditText etNombre;
